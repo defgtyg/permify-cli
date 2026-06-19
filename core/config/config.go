@@ -25,9 +25,12 @@ type ProfileConfigs struct {
 
 // CoreConfig is the config struct
 type CoreConfig struct {
-	PermifyURL			 string  `yaml:"permify_url"`
-	Tenant 				 string  `yaml:"tenant"`
-	SslEnabled           bool    `yaml:"-"`
+	PermifyURL         string `yaml:"permify_url"`
+	Tenant             string `yaml:"tenant"`
+	Token              string `yaml:"token,omitempty"`
+	CertificatePath    string `yaml:"certificate_path,omitempty"`
+	CertificateKeyPath string `yaml:"certificate_key_path,omitempty"`
+	SslEnabled         bool   `yaml:"-"`
 }
 
 // IsConfigured checks if permctl cli has been configured
