@@ -4,6 +4,7 @@ package client
 import (
 	"crypto/tls"
 	"fmt"
+	"strings"
 
 	"github.com/Permify/permify-cli/core/config"
 	permify "github.com/Permify/permify-go/v1"
@@ -17,6 +18,7 @@ func New(endpoint string) (*permify.Client, error) {
 	clientConfig := config.CliConfig
 	if endpoint != "" {
 		clientConfig.PermifyURL = endpoint
+		clientConfig.SslEnabled = strings.HasPrefix(endpoint, "https")
 	}
 
 	options := []grpc.DialOption{}
