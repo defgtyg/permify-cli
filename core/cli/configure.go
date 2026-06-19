@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"os"
+	"strings"
 
 	"github.com/Permify/permify-cli/core/client"
 	"github.com/Permify/permify-cli/core/config"
@@ -118,7 +119,7 @@ func runE(cmd *cobra.Command, _ []string) error {
 	config.CliConfig.Token = token
 	config.CliConfig.CertificatePath = certificatePath
 	config.CliConfig.CertificateKeyPath = certificateKeyPath
-	config.CliConfig.SslEnabled = config.CliConfig.PermifyURL != "" && config.CliConfig.PermifyURL[:5] == "https"
+	config.CliConfig.SslEnabled = strings.HasPrefix(config.CliConfig.PermifyURL, "https")
 
 	resp, err := client.New(url)
 	if err != nil {
